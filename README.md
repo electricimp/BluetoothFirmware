@@ -41,3 +41,7 @@ This library can be used on either the agent or the device. If used on the agent
 ```
 
 ```
+
+## License ##
+
+This library is licensed under the [MIT License](./LICENSE).
