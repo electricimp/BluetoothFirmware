@@ -28,11 +28,13 @@ bt <- hardware.bluetooth.open(bt_uart, BT_FIRMWARE.CYW_43455);
 
 ## Full Examples ##
 
-This library can be used on either the agent or the device. If used on the agent the firmware will need to be sent to the device, so the device can boot bluetooth. When the library is used on the device please be sure your application has enough memory to store the firmware.
+This library can be used on either the agent or the device. These examples will walk through basic usage for both. 
 
-### Device ###
+### Library on Device ###
 
-Device code
+When the library is used on the device please be sure your application has enough memory to store the firmware.
+
+Device code:
 ```
 #require "bt_firmware.lib.nut:1.0.0"
 
@@ -62,9 +64,11 @@ try {
 }
 ```
 
-### Agent ###
+### Library on Agent ###
 
-Agent code
+When the library is used on the agent the firmware will need to be sent to the device, so the device can boot bluetooth. 
+
+Agent code:
 ```
 #require "bt_firmware.lib.nut:1.0.0"
 
@@ -75,7 +79,7 @@ device.on("getFirmware", function(msg) {
 })
 ```
 
-Device code 
+Device code:
 ```
 #require "SPIFlashFileSystem.device.lib.nut:2.0.0"
 
@@ -117,10 +121,9 @@ function getBTFirmware() {
     return firmware;
 }
 
-
 // Use stored firmware to boot bluetooth
 function bootBT() {
-    server.log("Booting bluetooth");
+    server.log("Booting bluetooth using firmware stored in SPI flash");
     // Boot up BT
     bt_lpo_in.configure(DIGITAL_OUT, 0);
     bt_reg_on.configure(DIGITAL_OUT, 1);
