@@ -1,12 +1,12 @@
 # Bluetooth Firmware 1.0.0 #
 
-The Bluetooth Firmware library contains the firmware strings needed to [initialize an imp API **bluetooth** object](https://developer.electricimp.com/api/hardware/bluetooth/open). The library contains the latest recommended firmware for use with the imp004m and imp006 modules. The imp004m firmware is approximately 16KB in size. The imp006 firmware is approximately 60KB in size. The firmware will only consume memory if referenced in your code.
+The Bluetooth Firmware library contains the firmware strings required to [initialize an imp API **bluetooth** object](https://developer.electricimp.com/api/hardware/bluetooth/open). The library contains the latest recommended firmware for use with the imp004m and imp006 modules. The imp004m firmware is approximately 16KB in size. The imp006 firmware is approximately 60KB in size. The firmware will only consume memory if referenced in your code.
 
 **To include this library in your project, add** `#require "bt_firmware.lib.nut:1.0.0"` **at the top of your code**
 
 ## Library Usage ##
 
-The library consists of an enum, *BT_FIRMWARE*, with the following elements, all strings.
+The library consists of an enum, *BT_FIRMWARE*, with the following elements, all of which are strings.
 
 | Element | Value |
 | --- | --- |
@@ -32,7 +32,7 @@ This library can be used on either the agent or the device. These examples will 
 
 ### Library On Device ###
 
-When the library is used on the device please be sure your application has enough memory to store the firmware.
+When the library is used on the device, please be sure your application has sufficient memory to store the firmware.
 
 #### Device Code ####
 
@@ -53,15 +53,12 @@ bt_reg_on.configure(DIGITAL_OUT, 1);
 // configured state before proceeding...
 imp.sleep(0.05);
 
-local start = hardware.millis();
-
 try {
     // Instantiate BT with the imp004m firmware
     bt = hardware.bluetooth.open(bt_uart, BT_FIRMWARE.CYW_43438);
-    server.log("BLE initialized after " + (hardware.millis() - start) + " ms");
+    server.log("BLE initialized");
 } catch (err) {
-    server.error(err);
-    server.log("BLE failed after " + (hardware.millis() - start) + " ms");
+    server.log("BLE failed: " + err);
 }
 ```
 
@@ -75,7 +72,7 @@ When the library is used on the agent, the firmware will need to be sent to the 
 #require "bt_firmware.lib.nut:1.0.0"
 
 device.on("get.firmware", function(ignore) {
-    // Send imp004m BT firmware
+    // Send imp004m BT firmware to the device
     server.log("Sending device bluetooth firmware");
     device.send("set.firmware", BT_FIRMWARE.CYW_43438);
 })
@@ -114,23 +111,20 @@ function getBTFirmware() {
 
 // Use stored firmware to boot bluetooth
 function bootBT() {
-    server.log("Booting bluetooth using firmware stored in SPI flash");
+    server.log("Booting Bluetooth with stored firmware");
     bt_lpo_in.configure(DIGITAL_OUT, 0);
     bt_reg_on.configure(DIGITAL_OUT, 1);
 
     // Pause to ensure pins are in the newly
-    // configured state before proceeding...
+    // configured state before proceeding
     imp.sleep(0.05);
-
-    local start = hardware.millis();
 
     try {
         // Instantiate BT
         bt = hardware.bluetooth.open(bt_uart, getBTFirmware());
-        server.log("BLE initialized after " + (hardware.millis() - start) + " ms");
+        server.log("BLE initialized");
     } catch (err) {
-        server.error(err);
-        server.log("BLE failed after " + (hardware.millis() - start) + " ms");
+        server.log("BLE failed: " + err);
     }
 }
 
@@ -147,18 +141,17 @@ haveStoredFirmware <- sffs.fileExists(BT_FIRMWARE_FILE_NAME);
 
 // Create listener for firmware message from agent
 agent.on("set.firmware", function(firmware) {
-    server.log("Received bluetooth firmware from agent.");
+    server.log("Received bluetooth firmware from agent");
     storeBTFirmware(firmware);
     bootBT();
 });
 
 if (haveStoredFirmware) {
     // Boot bluetooth with stored firmware
-    server.log("We have stored bluetooth firmware");
     bootBT();
 } else {
     // Get bluetooth firmware from agent
-    server.log("No stored bluetooth firmware. Requesting firmware from agent...");
+    server.log("No stored Bluetooth firmware. Requesting firmware from agent...");
     agent.send("get.firmware", null);
 }
 ```
