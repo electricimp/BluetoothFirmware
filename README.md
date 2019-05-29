@@ -10,11 +10,11 @@ The library consists of an enum, *BT_FIRMWARE*, with the following elements, all
 
 | Element | Value |
 | --- | --- |
-| *VERSION* | Bluetooth Firmware library release version |
-| CYW_43438_VERSION | Broadcom version string - BCM4343A1_001_002_009_0018_0028_Generic_UART_37_4MHz_wlbga_ref_hcd |
-| CYW_43455_VERSION | Murata Broadcom version string - 4BCM4345C0 Murata Type-1MW UART 37.4 MHz BT 4.2-0144 |
-| *CYW_43438* | Bluetooth Firmware string for the imp004m |
-| *CYW_43455* | Bluetooth Firmware string for the imp 006 and WiFi/Bluetooth click |
+| *VERSION* | Electric Imp Bluetooth Firmware library release version |
+| CYW_43438_VERSION | Broadcom 43438 firmware version string "BCM4343A1_001_002_009_0018_0028_Generic_UART_37_4MHz_wlbga_ref_hcd" |
+| CYW_43455_VERSION | Broadcom 43455 firmware version string "BCM4345C0 Murata Type-1MW UART 37.4 MHz BT 4.2-0144" |
+| *CYW_43438* | Bluetooth Firmware for the Cypress 43438 found on the imp004m |
+| *CYW_43455* | Bluetooth Firmware for the Cypress 43455 found on the imp006 and WiFi/Bluetooth click |
 
 ### imp004m Example ###
 
