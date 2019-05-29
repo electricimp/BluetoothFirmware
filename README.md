@@ -1,6 +1,6 @@
 # Bluetooth Firmware 1.0.0 #
 
-The Bluetooth Firmware library contains the firmware strings required to [initialize an imp API **bluetooth** object](https://developer.electricimp.com/api/hardware/bluetooth/open). The library contains the latest recommended firmware for use with the imp004m and imp006 modules. The imp004m firmware is approximately 16KB in size. The imp006 firmware is approximately 60KB in size. The firmware will only consume memory if referenced in your code.
+The Bluetooth Firmware library contains the firmware strings required to [initialize an imp API **bluetooth** object](https://developer.electricimp.com/api/hardware/bluetooth/open). The library contains the recommended bluetooth firmware for use with the Cypress 43438 found on the imp004m, and the Cypress 43455 found on the imp006 module and on the WiFi/Bluetooth click for use with the imp001C. The Cypress 43438 firmware is approximately 16KB in size. The Cypress 43455 firmware is approximately 60KB in size. The firmware will only consume memory if referenced in your code.
 
 **To include this library in your project, add** `#require "bt_firmware.lib.nut:1.0.0"` **at the top of your code**
 
@@ -11,8 +11,10 @@ The library consists of an enum, *BT_FIRMWARE*, with the following elements, all
 | Element | Value |
 | --- | --- |
 | *VERSION* | Bluetooth Firmware library release version |
-| *CYW_43438* | Firmware for the imp004m |
-| *CYW_43455* | Firmware for the imp006, WiFi/Bluetooth click |
+| CYW_43438_VERSION | Broadcom version string - BCM4343A1_001_002_009_0018_0028_Generic_UART_37_4MHz_wlbga_ref_hcd |
+| CYW_43455_VERSION | Murata Broadcom version string - 4BCM4345C0 Murata Type-1MW UART 37.4 MHz BT 4.2-0144 |
+| *CYW_43438* | Bluetooth Firmware string for the imp004m |
+| *CYW_43455* | Bluetooth Firmware string for the imp 006 and WiFi/Bluetooth click |
 
 ### imp004m Example ###
 
