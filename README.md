@@ -75,9 +75,11 @@ When the library is used on the agent, the firmware will need to be sent to the 
 
 device.on("get.firmware", function(ignore) {
     // Send imp004m BT firmware to the device
-    server.log("Sending device bluetooth firmware");
+    server.log("Sending device bluetooth firmware version " + BT_FIRMWARE.CYW_43438_VERSION);
     device.send("set.firmware", BT_FIRMWARE.CYW_43438);
 })
+
+server.log("AGENT RUNNING...");
 ```
 
 #### Device Code ####
@@ -98,6 +100,9 @@ function storeBTFirmware(firmware) {
     local file = sffs.open(BT_FIRMWARE_FILE_NAME, "w");
     file.write(firmware);
     file.close();
+
+    // Make sure we update stored firmware flag
+    haveStoredFirmware <- sffs.fileExists(BT_FIRMWARE_FILE_NAME);
 }
 
 // Retrieve Bluetooth firmware from SPI Flash
@@ -147,6 +152,10 @@ agent.on("set.firmware", function(firmware) {
     storeBTFirmware(firmware);
     bootBT();
 });
+
+server.log("DEVICE RUNNING...");
+imp.enableblinkup(true);
+server.log(imp.getsoftwareversion());
 
 if (haveStoredFirmware) {
     // Boot bluetooth with stored firmware
