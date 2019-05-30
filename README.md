@@ -1,6 +1,6 @@
 # Bluetooth Firmware 1.0.0 #
 
-The Bluetooth Firmware library contains the firmware strings required to [initialize an imp API **bluetooth** object](https://developer.electricimp.com/api/hardware/bluetooth/open). The library contains the recommended bluetooth firmware for use with the Cypress 43438 found on the imp004m, and the Cypress 43455 found on the imp006 module and on the WiFi/Bluetooth click for use with the imp001C. The Cypress 43438 firmware is approximately 16KB in size. The Cypress 43455 firmware is approximately 60KB in size. The firmware will only consume memory if referenced in your code.
+The Bluetooth Firmware library contains the firmware strings required to [initialize an imp API **bluetooth** object](https://developer.electricimp.com/api/hardware/bluetooth/open). The library contains the recommended bluetooth firmware for use with the [Cypress 43438 found on the imp004m](https://developer.electricimp.com/hardware/resources/reference-designs/imp004mbreakout#bluetooth-le), and the Cypress 43455 found on the imp006 module and on the WiFi/Bluetooth mikroBUS Click board [for use with the impC001](https://developer.electricimp.com/hardware/resources/reference-designs/impc001breakout#mikrobus). The Cypress 43438 firmware is approximately 16KB in size. The Cypress 43455 firmware is approximately 60KB in size. The firmware will only consume memory if referenced in your code.
 
 **To include this library in your project, add** `#require "bt_firmware.lib.nut:1.0.0"` **at the top of your code**
 
@@ -11,10 +11,10 @@ The library consists of an enum, *BT_FIRMWARE*, with the following elements, all
 | Element | Value |
 | --- | --- |
 | *VERSION* | Electric Imp Bluetooth Firmware library release version |
-| CYW_43438_VERSION | Broadcom 43438 firmware version string "BCM4343A1_001_002_009_0018_0028_Generic_UART_37_4MHz_wlbga_ref_hcd" |
-| CYW_43455_VERSION | Broadcom 43455 firmware version string "BCM4345C0 Murata Type-1MW UART 37.4 MHz BT 4.2-0144" |
+| *CYW_43438_VERSION* | Broadcom 43438 firmware version string,<br />eg. `"BCM4343A1_001_002_009_0018_0028_Generic_UART_37_4MHz_wlbga_ref_hcd"` |
+| *CYW_43455_VERSION* | Broadcom 43455 firmware version string,<br />eg. `"BCM4345C0 Murata Type-1MW UART 37.4 MHz BT 4.2-0144"` |
 | *CYW_43438* | Bluetooth Firmware for the Cypress 43438 found on the imp004m |
-| *CYW_43455* | Bluetooth Firmware for the Cypress 43455 found on the imp006 and WiFi/Bluetooth click |
+| *CYW_43455* | Bluetooth Firmware for the Cypress 43455 found on the imp006 and WiFi/Bluetooth Click |
 
 ### imp004m Example ###
 
