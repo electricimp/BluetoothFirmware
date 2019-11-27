@@ -28,6 +28,8 @@ bt <- hardware.bluetooth.open(bt_uart, BT_FIRMWARE.CYW_43438);
 bt <- hardware.bluetooth.open(bt_uart, BT_FIRMWARE.CYW_43455);
 ```
 
+**Note** This library is not required if your imp006 is running impOS 41.28 or above (see [**How To Use Bluetooth With The imp006**](https://developer.electricimp.com/resources/bluetooth_imp006)).
+
 ## Full Examples ##
 
 This library can be used on either the agent or the device. These examples will walk through basic usage for both.
